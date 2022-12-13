@@ -28,6 +28,12 @@ def main():
                 print("SOMETHING WENT WRONG")
                 exit(1)
             l, r = 0, 9001 - SUM_HEADERS_SIZE
+            process = subprocess.run(
+                ["ping", host, "-M", "do", "-s", str(0), "-c", "1"],
+            )
+            if process.returncode != 0:
+                print("NO PING HOST")
+                return
             res = l
             while l + 1 < r:
                 m = (l + r) // 2
